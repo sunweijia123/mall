@@ -12,4 +12,6 @@ public class User extends BaseEntity {
 
     private String avatar;
 
+    private String email;
+
 }

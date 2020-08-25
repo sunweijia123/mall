@@ -8,4 +8,19 @@
         acac.loginAccont =#{loginAccont}
         AND acac.password = #{password}
        </select>
+
+    <insert id="register" useGeneratedKeys="true" keyProperty="cameraNo" parameterType="User">
+        insert into user value (#{name},#{avatar},#{createTime},#{updateTime});
+    </insert>
+
+    <insert id="registerLoginInfo" parameterType="User">
+        insert into user_account value (#{userId},#{loginAccont},#{password},#{createTime},#{updateTime});
+    </insert>
+
+    <update id="modifyPassword">
+        update user_account
+        set password = #{newPassword}
+        , updateTime = now()
+        where userId = #{userId}
+    </update>
 </mapper>

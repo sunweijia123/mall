@@ -60,8 +60,9 @@ public class JsonResult implements Serializable {
         return jsonResult;
     }
 
-    public static JsonResult FAILED(){
-        return new JsonResult(-1,"登录信息不能为空");
+    public static JsonResult FAILED(String message){
+        return new JsonResult(-1,message);
     }
+
 }
 
