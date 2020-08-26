@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuhan.mall.dao.ClientLogInfoMapper">
+
+    <insert id="addRecord" parameterType="com.wuhan.mall.entity.ClientLogInfo">
+        insert into client_log_lnfo
+        value(
+         0,
+            #{clientId},
+            #{visitTime},
+            #{visitInfo},
+            now(),
+            now()
+        )
+    </insert>
+
+    <select id="getClientLogInfoList" resultType="com.wuhan.mall.entity.ClientLogInfo">
+        select id,visitTime,visitInfo from client_log_lnfo where clientId = #{clientId}
+    </select>
+
+</mapper>

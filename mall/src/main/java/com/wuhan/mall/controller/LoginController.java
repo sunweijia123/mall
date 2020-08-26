@@ -7,17 +7,18 @@ import com.wuhan.mall.vo.JsonResult;
 import com.wuhan.mall.vo.RegisterVo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
 @RequestMapping("/mall")
 public class LoginController {
 
-    @Autowired
+    @Resource
     LoginService loginService;
 
     @RequestMapping("/login")
