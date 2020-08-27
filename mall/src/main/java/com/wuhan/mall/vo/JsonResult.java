@@ -6,6 +6,7 @@ import java.io.Serializable;
  * @author liuan
  * @create 2018-12-11 15:42
  */
+
 public class JsonResult implements Serializable {
 
     private static final long serialVersionUID = 4099225846909069320L;
@@ -16,6 +17,10 @@ public class JsonResult implements Serializable {
     private String message="ok";
     /**正确数据*/
     private Object data;
+
+    private Integer page;
+    private Integer pageSize;
+    private Long total;
     public JsonResult() {}
     public JsonResult(String message){
         this.message=message;
@@ -52,8 +57,43 @@ public class JsonResult implements Serializable {
         this.data = data;
     }
 
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
+    }
+
     public static JsonResult OK(Object data){
         JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(data);
+        jsonResult.setMessage("ok");
+        jsonResult.setState(1);
+        return jsonResult;
+    }
+
+    public static  JsonResult OKList(Object data,Integer page,Integer pageSize,Long total){
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setPage(page);
+        jsonResult.setPageSize(pageSize);
+        jsonResult.setTotal(total);
         jsonResult.setData(data);
         jsonResult.setMessage("ok");
         jsonResult.setState(1);

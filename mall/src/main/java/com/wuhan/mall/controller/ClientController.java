@@ -2,6 +2,7 @@ package com.wuhan.mall.controller;
 
 import com.wuhan.mall.entity.Client;
 import com.wuhan.mall.service.ClientService;
+import com.wuhan.mall.util.PageBean;
 import com.wuhan.mall.vo.JsonResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -61,9 +63,18 @@ public class ClientController {
     }
 
     @RequestMapping("/getClientList")
-    public JsonResult getClientList(){
-        List<Client> clientList = clientService.getClientList();
-        return JsonResult.OK(clientList);
+    public JsonResult getClientList(@RequestParam("page") Integer page){
+        if(page == null){
+            page = 1;
+        }
+        PageBean pageBean = new PageBean();
+        pageBean.setPage(page);
+        Map<String, Object> map = clientService.getClientList(pageBean);
+        List<Client> data = (List<Client>)map.get("data");
+        Integer pageNum = (Integer)map.get("page");
+        Integer pageSize = (Integer)map.get("pageSize");
+        Long total = (Long)map.get("total");
+        return JsonResult.OKList(data,pageNum,pageSize,total);
     }
 
 }
