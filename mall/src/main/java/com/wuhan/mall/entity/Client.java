@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 
@@ -36,5 +37,13 @@ public class Client extends BaseEntity {
     //客户主营产品信息
     @NotBlank(message = "客户主营产品信息不能为空")
     private String productInfo;
+
+    //是否是合作客户  0 不是   1 是
+    @NotNull(message = "isJoin不能为空")
+    private Integer isJoin = 0;
+
+    //是否是意向客户  0 不是   1 是
+    @NotNull(message = "isIntention不能为空")
+    private Integer isIntention = 0;
 
 }

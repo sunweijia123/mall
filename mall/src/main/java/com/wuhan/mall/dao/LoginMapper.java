@@ -11,7 +11,7 @@ public interface LoginMapper extends BaseMapper<UserAccount> {
 
     User login(@Param("loginAccont")String loginAccont, @Param("password")String password);
 
-    User register(User user);
+    int register(User user);
 
     int registerLoginInfo(UserAccount userAccount);
 

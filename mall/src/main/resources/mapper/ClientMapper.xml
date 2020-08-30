@@ -14,6 +14,8 @@
             #{houseInfo},
             #{peopleInfo},
             #{productInfo},
+            #{isJoin},
+            #{isIntention},
             now(),
             now()
         )
@@ -45,16 +47,22 @@
             <if test="productInfo != null">
                 productInfo = #{productInfo},
             </if>
+            <if test="isJoin != null">
+                isJoin = #{isJoin},
+            </if>
+            <if test="isIntention != null">
+                isIntention = #{isIntention},
+            </if>
            updateTime = now()
         </trim>
         where id = #{id}
     </update>
 
     <select id="getClient" resultType="com.wuhan.mall.entity.Client">
-        select id, name, phone, address, houseInfo, peopleInfo, productInfo from client where id = #{id}
+        select id, name, phone, address, houseInfo, peopleInfo, productInfo,isJoin,isIntention from client where id = #{id}
     </select>
 
     <select id="getClientList" resultType="com.wuhan.mall.entity.Client">
-        select id, name, phone, address, houseInfo, peopleInfo, productInfo from client order by createTime desc
+        select id, name, phone, address, houseInfo, peopleInfo, productInfo,isJoin,isIntention from client order by createTime desc
     </select>
 </mapper>

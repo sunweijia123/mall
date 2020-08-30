@@ -21,7 +21,6 @@ public class ClientService {
 
     public int addClient(Client client){
         return clientMapper.addClient(client);
-//        return clientMapper.insert(client);
     }
 
     public int delClient(Integer id){

@@ -7,12 +7,16 @@ import com.wuhan.mall.vo.JsonResult;
 import com.wuhan.mall.vo.RegisterVo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 @RestController
 @RequestMapping("/mall")
+@Transactional
 public class LoginController {
 
     @Resource
@@ -39,9 +43,12 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public JsonResult register(RegisterVo registerVo){
+    public JsonResult register(@RequestBody @Validated RegisterVo registerVo, BindingResult bindingResult){
         if(registerVo == null){
             return JsonResult.FAILED("注册失败！");
+        }
+        if (bindingResult.hasErrors()) {
+            return JsonResult.FAILED(bindingResult.getAllErrors().get(0).getDefaultMessage());
         }
         User user = new User();
         UserAccount userAccount = new UserAccount();
@@ -56,7 +63,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/modifyPassword",method = RequestMethod.POST)
-    public JsonResult register(@RequestParam("newPassword")String newPassword,
+    public JsonResult modifyPassword(@RequestParam("newPassword")String newPassword,
                                @RequestParam("userId")int userId){
         loginService.modifyPassword(newPassword,userId);
         return  JsonResult.OK("修改成功，密码为："+newPassword);

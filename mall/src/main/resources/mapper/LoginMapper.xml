@@ -14,12 +14,26 @@
         AND acac.password = #{password}
        </select>
 
-    <insert id="register" useGeneratedKeys="true" keyProperty="cameraNo" parameterType="User">
-        insert into user value (#{name},#{avatar},#{createTime},#{updateTime});
+    <insert id="register" useGeneratedKeys="true" keyProperty="id" parameterType="com.wuhan.mall.entity.User">
+        insert into user value (
+        0,
+        #{name},
+        #{avatar},
+        #{email},
+        #{createTime},
+        #{updateTime}
+    );
     </insert>
 
-    <insert id="registerLoginInfo" parameterType="User">
-        insert into user_account value (#{userId},#{loginAccont},#{password},#{createTime},#{updateTime});
+    <insert id="registerLoginInfo" parameterType="com.wuhan.mall.entity.User">
+        insert into user_account value (
+            0,
+            #{userId},
+            #{loginAccont},
+            #{password},
+            #{createTime},
+            #{updateTime}
+        );
     </insert>
 
     <update id="modifyPassword">
