@@ -7,10 +7,7 @@ import com.wuhan.mall.vo.JsonResult;
 import com.wuhan.mall.vo.RegisterVo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -21,14 +18,23 @@ public class LoginController {
     @Resource
     LoginService loginService;
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public JsonResult login(@RequestParam("name") String userName,
                             @RequestParam("password") String password){
         if(StringUtils.isBlank(userName) || StringUtils.isBlank(password)){
             return JsonResult.FAILED("登录信息不能为空！");
         }
 
+        User loginServiceUser = loginService.getUser(userName);
+        if(loginServiceUser == null){
+            return JsonResult.FAILED("请先注册用户，再登录！");
+        }
+
         User user = loginService.login(userName, password);
+
+        if(user == null){
+            return JsonResult.FAILED("密码错误，请重试！");
+        }
         return JsonResult.OK(user);
     }
 

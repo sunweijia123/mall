@@ -15,6 +15,11 @@ public class LoginService {
     @Resource
     LoginMapper loginMapper;
 
+    //获取账户
+    public User getUser(String loginAccont){
+        return loginMapper.getUser(loginAccont);
+    }
+
     //登录查询
     public User login( String loginAccont, String password){
         return loginMapper.login(loginAccont, password);

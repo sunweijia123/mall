@@ -169,18 +169,6 @@
             </plugin>
         </plugins>
 
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>application-${profileActive}.properties</include>
-                    <include>application.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-
-        </resources>
     </build>
 
 </project>

@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 public interface LoginMapper extends BaseMapper<UserAccount> {
 
+    User getUser(String loginAccont);
+
     User login(@Param("loginAccont")String loginAccont, @Param("password")String password);
 
     User register(User user);
