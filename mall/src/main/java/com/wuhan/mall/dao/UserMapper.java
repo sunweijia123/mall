@@ -6,4 +6,8 @@ import com.wuhan.mall.entity.User;
 public interface UserMapper extends BaseMapper<User> {
 
     User getUserByEmail(String email);
+
+    int modifyAvatar(User user);
+
+    User getUserById(Integer id);
 }
