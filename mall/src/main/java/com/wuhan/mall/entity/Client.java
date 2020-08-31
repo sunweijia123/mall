@@ -38,12 +38,8 @@ public class Client extends BaseEntity {
     @NotBlank(message = "客户主营产品信息不能为空")
     private String productInfo;
 
-    //是否是合作客户  0 不是   1 是
-    @NotNull(message = "isJoin不能为空")
-    private Integer isJoin = 0;
-
-    //是否是意向客户  0 不是   1 是
-    @NotNull(message = "isIntention不能为空")
-    private Integer isIntention = 0;
+    //是否是意向客户  0 未合作   1 已合作   2 意向客户
+    @NotNull(message = "合作状态不能为空")
+    private Integer cooperationStatus;
 
 }

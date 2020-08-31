@@ -22,7 +22,7 @@ public class UploadImgController {
         String fileName = file.getOriginalFilename();
         // 获取文件的后缀名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
-        List<String> extList = Arrays.asList(".jpg", ".png", ".jpeg", ".gif");
+        List<String> extList = Arrays.asList(".jpg", ".png", ".jpeg", ".gif", ".PNG", ".JPG", ".JPEG", ".GIF");
         if (!extList.contains(suffixName)) {
             return "图片格式非法";
         }

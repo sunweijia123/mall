@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuhan.mall.dao.ProductMapper">
+
+    <select id="getProductList" resultType="com.wuhan.mall.entity.Product">
+        select id,name,avatar,size,type,price from product
+    </select>
+
+    <insert id="addProduct" parameterType="com.wuhan.mall.entity.Product">
+        insert into product values(
+            0,
+            #{name},
+            #{avatar},
+            #{size},
+            #{type},
+            #{price},
+            now(),
+            now()
+        )
+    </insert>
+
+    <delete id="delProduct">
+        delete from product
+         where id=#{id}
+    </delete>
+
+    <update id="modifyProduct" parameterType="com.wuhan.mall.entity.Product">
+        update product
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="size != null">
+                size = #{size},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            updateTime = now()
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>

@@ -25,19 +25,18 @@ public class LoginService {
         return loginMapper.login(loginAccont, password);
     }
 
-    private Date date = new Date();
     //注册user
     public User register(User user){
-        user.setCreateTime(date);
-        user.setUpdateTime(date);
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
         loginMapper.register(user);
         return user;
     }
 
     //注册LoginInfo
     public void registerLoginInfo(UserAccount userAccount){
-        userAccount.setCreateTime(date);
-        userAccount.setUpdateTime(date);
+        userAccount.setCreateTime(new Date());
+        userAccount.setUpdateTime(new Date());
         loginMapper.registerLoginInfo(userAccount);
     }
 
