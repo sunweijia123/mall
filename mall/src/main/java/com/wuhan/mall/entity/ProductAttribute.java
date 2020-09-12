@@ -7,17 +7,15 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-public class Product extends BaseEntity{
+public class ProductAttribute extends BaseEntity {
 
-    private String name;
+    //产品id
+    private int productId;
 
-    private String avatar;
+    //包装规格
+    private String pack;
 
-    private String type;
+    //出厂价
+    private Integer price;
 
-    //粘度
-    private String viscosity;
-
-    //质量级别
-    private String qualityLevel;
 }

@@ -8,11 +8,17 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.annotation.Resource;
+
 @Configuration
 public class MallWebMvcConfig implements WebMvcConfigurer {
+
+    @Resource
+    ProcessInterceptor interceptor;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new ProcessInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(interceptor).addPathPatterns("/**")
+                .excludePathPatterns("/");
     }
 
     @Override

@@ -1,9 +1,13 @@
 package com.wuhan.mall.controller;
 
 import com.wuhan.mall.entity.Product;
+import com.wuhan.mall.entity.ProductAttribute;
 import com.wuhan.mall.service.ProductService;
+import com.wuhan.mall.util.EmptyUtil;
 import com.wuhan.mall.util.PageBean;
 import com.wuhan.mall.vo.JsonResult;
+import com.wuhan.mall.vo.ProductReq;
+import com.wuhan.mall.vo.ProductVo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,11 +23,20 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping("/addProduct")
-    public JsonResult addProduct(@RequestBody Product product){
-        if(!Objects.nonNull(product)){
+    public JsonResult addProduct(@RequestBody ProductReq productReq){
+        if(!Objects.nonNull(productReq) || EmptyUtil.isEmpty(productReq.getProductAttributes())){
             return JsonResult.FAILED("参数错误！");
         }
-        int result = productService.addProduct(product);
+        int result = productService.addProduct(productReq);
+        return JsonResult.OK(result);
+    }
+
+    @PostMapping("/addProductAttr")
+    public JsonResult addProductAttr(@RequestBody ProductAttribute productAttribute){
+        if(!Objects.nonNull(productAttribute)){
+            return JsonResult.FAILED("参数错误！");
+        }
+        int result = productService.addProductAttr(productAttribute);
         return JsonResult.OK(result);
     }
 
@@ -37,12 +50,31 @@ public class ProductController {
         return JsonResult.OK(result);
     }
 
+    @GetMapping("/delProductAttr")
+    public JsonResult delProductAttr(@RequestParam("id") Integer id){
+        if(id == null || id == 0){
+            return JsonResult.FAILED("参数错误！");
+        }
+
+        int result = productService.delProductAttr(id);
+        return JsonResult.OK(result);
+    }
+
     @PostMapping("/modifyProduct")
     public JsonResult modifyProduct(@RequestBody Product product){
         if(!Objects.nonNull(product)){
             return JsonResult.FAILED("参数错误！");
         }
         int result = productService.modifyProduct(product);
+        return JsonResult.OK(result);
+    }
+
+    @PostMapping("/modifyProductAttr")
+    public JsonResult modifyProductAttr(@RequestBody ProductAttribute productAttribute){
+        if(!Objects.nonNull(productAttribute)){
+            return JsonResult.FAILED("参数错误！");
+        }
+        int result = productService.modifyProductAttr(productAttribute);
         return JsonResult.OK(result);
     }
 
@@ -61,4 +93,20 @@ public class ProductController {
         Long total = (Long)map.get("total");
         return JsonResult.OKList(data, pageNum,pageSize,total);
     }
+
+    @GetMapping("/getList")
+    public JsonResult getList(){
+        return JsonResult.OK(productService.getList());
+    }
+
+    @GetMapping("/getProductAttrList")
+    public JsonResult getProductAttrList(@RequestParam("proId") Integer proId){
+        if(proId == null || proId == 0){
+            return JsonResult.FAILED("参数错误！");
+        }
+        List<ProductVo> productAttrList = productService.getProductAttrList(proId);
+        return JsonResult.OK(productAttrList);
+    }
+
+
 }

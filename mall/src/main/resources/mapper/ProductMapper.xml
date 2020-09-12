@@ -5,25 +5,55 @@
 <mapper namespace="com.wuhan.mall.dao.ProductMapper">
 
     <select id="getProductList" resultType="com.wuhan.mall.entity.Product">
-        select id,name,avatar,size,type,price from product
+        select id,name,avatar,qualityLevel,type,viscosity from product
     </select>
 
-    <insert id="addProduct" parameterType="com.wuhan.mall.entity.Product">
+    <select id="getProductVoList" resultType="com.wuhan.mall.vo.ProductVo">
+        SELECT
+            pa.id,
+            pa.productId,
+            pro.NAME,
+            pa.pack,
+            pa.price
+        FROM
+	        product_attribute AS pa
+	    LEFT JOIN product AS pro ON pa.productId = pro.id
+        WHERE
+	        productId =#{proId}
+    </select>
+
+    <insert id="addProduct" useGeneratedKeys="true" keyProperty="id" parameterType="com.wuhan.mall.entity.Product">
         insert into product values(
-            0,
+            null,
             #{name},
             #{avatar},
-            #{size},
             #{type},
+            #{viscosity},
+            #{qualityLevel},
+            now(),
+            now()
+        )
+    </insert>
+
+    <insert id="addProductAttr" parameterType="com.wuhan.mall.entity.ProductAttribute">
+        insert into product_attribute values(
+            0,
+            #{productId},
+            #{pack},
             #{price},
             now(),
             now()
         )
     </insert>
 
+
     <delete id="delProduct">
         delete from product
          where id=#{id}
+    </delete>
+
+    <delete id="delProductAttr">
+        delete from product_attribute where id = #{id}
     </delete>
 
     <update id="modifyProduct" parameterType="com.wuhan.mall.entity.Product">
@@ -35,11 +65,25 @@
             <if test="avatar != null">
                 avatar = #{avatar},
             </if>
-            <if test="size != null">
-                size = #{size},
+            <if test="viscosity != null">
+                viscosity = #{viscosity},
             </if>
             <if test="type != null">
                 type = #{type},
+            </if>
+            <if test="qualityLevel != null">
+                qualityLevel = #{qualityLevel},
+            </if>
+            updateTime = now()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="modifyProductAttr" parameterType="com.wuhan.mall.entity.ProductAttribute">
+        update product_attribute
+        <trim prefix="set" suffixOverrides=",">
+            <if test="pack != null">
+                pack = #{pack},
             </if>
             <if test="price != null">
                 price = #{price},

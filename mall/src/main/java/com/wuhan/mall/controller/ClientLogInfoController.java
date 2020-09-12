@@ -34,6 +34,8 @@ public class ClientLogInfoController {
 
     @RequestMapping("/getClientLogInfoList")
     public JsonResult getClientLogInfoList(@RequestParam("id") Integer clientId,
+                                           @RequestParam("startDate") String startDate,
+                                           @RequestParam("endDate") String endDate,
                                            @RequestParam("page") Integer page){
         if(clientId == null){
             return JsonResult.FAILED("参数错误！");
@@ -43,7 +45,8 @@ public class ClientLogInfoController {
         }
         PageBean pageBean = new PageBean();
         pageBean.setPage(page);
-        Map<String, Object> map = clientLogInfoService.getClientLogInfoList(clientId, pageBean);
+
+        Map<String, Object> map = clientLogInfoService.getClientLogInfoList(clientId, pageBean,startDate,endDate);
         List<ClientLogInfo> data = (List<ClientLogInfo>)map.get("data");
         Integer pageNum = (Integer)map.get("page");
         Integer pageSize = (Integer)map.get("pageSize");

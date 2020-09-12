@@ -35,7 +35,7 @@ public class PageBean implements Serializable {
         this.setPagination(pagination);
         this.url=req.getContextPath()+req.getServletPath();
         this.map=req.getParameterMap();
-    }
+}
     public String getUrl() {
         return url;
     }

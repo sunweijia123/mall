@@ -20,7 +20,7 @@ public class ClientController {
     @Resource
     ClientService clientService;
 
-    @RequestMapping(value = "/addClient",method = RequestMethod.POST)
+    @PostMapping(value = "/addClient")
     public JsonResult addClient(@RequestBody @Validated Client client, BindingResult bindingResult){
         if(!Objects.nonNull(client)){
             return JsonResult.FAILED("参数错误！");
@@ -41,7 +41,7 @@ public class ClientController {
         return JsonResult.OK(result);
     }
 
-    @RequestMapping(value = "/modifyClient",method = RequestMethod.POST)
+    @PostMapping(value = "/modifyClient")
     public JsonResult modifyClient(@RequestBody @Validated Client client, BindingResult bindingResult){
         if(!Objects.nonNull(client)){
             return JsonResult.FAILED("参数错误！");
