@@ -77,4 +77,9 @@ public class ClientController {
         return JsonResult.OKList(data,pageNum,pageSize,total);
     }
 
+    @RequestMapping("/getList")
+    public JsonResult getList(){
+       return JsonResult.OK(clientService.getList());
+    }
+
 }

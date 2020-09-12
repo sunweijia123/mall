@@ -15,6 +15,9 @@ public class DealInfo extends BaseEntity{
     //产品id
     private int productId;
 
+    //包装规格
+    private String pack;
+
     //单价
     private int price;
 
@@ -27,10 +30,22 @@ public class DealInfo extends BaseEntity{
     //总价
     private int totalPrice;
 
+    //实际收款
+    private int proceeds;
+
+    //欠款
+    private int debt;
+
     //折扣
     private String discount;
 
-    //备注
+    //促销备注
+    private String saleRemark;
+
+    //欠款备注
+    private String debtRemark;
+
+    //其他备注
     private String remark;
 
 }

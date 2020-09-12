@@ -51,4 +51,8 @@ public class ClientService {
         return result;
     }
 
+    public List<Client> getList(){
+        return clientMapper.getClientList();
+    }
+
 }
