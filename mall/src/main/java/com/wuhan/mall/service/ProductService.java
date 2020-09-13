@@ -3,7 +3,6 @@ package com.wuhan.mall.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wuhan.mall.dao.ProductMapper;
-import com.wuhan.mall.entity.ClientLogInfo;
 import com.wuhan.mall.entity.Product;
 import com.wuhan.mall.entity.ProductAttribute;
 import com.wuhan.mall.util.PageBean;
@@ -67,6 +66,7 @@ public class ProductService {
             result.put("page",pageInfo.getPageNum());
             result.put("pageSize",pageInfo.getPageSize());
             result.put("total",pageInfo.getTotal());
+            result.put("totalPages",pageInfo.getTotal()/pageInfo.getPageSize() + 1);
         }
         return result;
     }

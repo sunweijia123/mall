@@ -35,6 +35,7 @@ public class ClientLogInfoService {
             result.put("page",pageInfo.getPageNum());
             result.put("pageSize",pageInfo.getPageSize());
             result.put("total",pageInfo.getTotal());
+            result.put("totalPages",pageInfo.getTotal()/pageInfo.getPageSize() + 1);
         }
         return result;
     }

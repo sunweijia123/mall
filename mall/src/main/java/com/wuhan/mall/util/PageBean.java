@@ -20,6 +20,8 @@ public class PageBean implements Serializable {
     private String url;
     //获取所有的请求参数
     private Map<String,String[]> map;
+    //总页数
+    private int totalPages;
 
     public PageBean() {
         super();
@@ -76,6 +78,14 @@ public class PageBean implements Serializable {
     public void setRows(String rows) {
         if(null!=rows &&!"".equals(rows.trim()))
             this.rows = Integer.parseInt(rows);
+    }
+
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
     }
 
     public int getTotal() {

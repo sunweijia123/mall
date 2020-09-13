@@ -91,7 +91,8 @@ public class ProductController {
         Integer pageNum = (Integer)map.get("page");
         Integer pageSize = (Integer)map.get("pageSize");
         Long total = (Long)map.get("total");
-        return JsonResult.OKList(data, pageNum,pageSize,total);
+        Long totalPages = (Long)map.get("totalPages");
+        return JsonResult.OKList(data,pageNum,pageSize,total,totalPages);
     }
 
     @GetMapping("/getList")

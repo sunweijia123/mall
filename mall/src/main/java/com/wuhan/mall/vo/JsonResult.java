@@ -21,6 +21,7 @@ public class JsonResult implements Serializable {
     private Integer page;
     private Integer pageSize;
     private Long total;
+    private Long totalPages;
     public JsonResult() {}
     public JsonResult(String message){
         this.message=message;
@@ -81,6 +82,14 @@ public class JsonResult implements Serializable {
         this.total = total;
     }
 
+    public Long getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(Long totalPages) {
+        this.totalPages = totalPages;
+    }
+
     public static JsonResult OK(Object data){
         JsonResult jsonResult = new JsonResult();
         jsonResult.setData(data);
@@ -89,12 +98,13 @@ public class JsonResult implements Serializable {
         return jsonResult;
     }
 
-    public static  JsonResult OKList(Object data,Integer page,Integer pageSize,Long total){
+    public static  JsonResult OKList(Object data,Integer page,Integer pageSize,Long total,Long totalPages){
         JsonResult jsonResult = new JsonResult();
         jsonResult.setPage(page);
         jsonResult.setPageSize(pageSize);
         jsonResult.setTotal(total);
         jsonResult.setData(data);
+        jsonResult.setTotalPages(totalPages);
         jsonResult.setMessage("ok");
         jsonResult.setState(1);
         return jsonResult;
