@@ -3,7 +3,6 @@ package com.wuhan.mall.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wuhan.mall.dao.DealMapper;
-import com.wuhan.mall.entity.Client;
 import com.wuhan.mall.entity.DealInfo;
 import com.wuhan.mall.util.PageBean;
 import com.wuhan.mall.vo.DealInfoVo;
