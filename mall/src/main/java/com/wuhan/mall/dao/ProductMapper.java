@@ -25,4 +25,8 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     List<ProductVo> getProductVoList(Integer proId);
 
+    Product getProductById(Integer id);
+
+    ProductAttribute getProductAttrById(Integer id);
+
 }

@@ -100,6 +100,16 @@ public class ProductController {
         return JsonResult.OK(productService.getList());
     }
 
+    @GetMapping("/getProductById")
+    public JsonResult getProductById(@RequestParam("id")Integer id){
+        return JsonResult.OK(productService.getProductById(id));
+    }
+
+    @GetMapping("/getProductAttrById")
+    public JsonResult getProductAttrById(@RequestParam("id")Integer id){
+        return JsonResult.OK(productService.getProductAttrById(id));
+    }
+
     @GetMapping("/getProductAttrList")
     public JsonResult getProductAttrList(@RequestParam("proId") Integer proId){
         if(proId == null || proId == 0){

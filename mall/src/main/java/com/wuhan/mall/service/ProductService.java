@@ -71,6 +71,16 @@ public class ProductService {
         return result;
     }
 
+    //产品信息回显接口
+    public Product getProductById(Integer id){
+        return productMapper.getProductById(id);
+    }
+
+    //产品属性信息回显接口
+    public ProductAttribute getProductAttrById(Integer id){
+        return productMapper.getProductAttrById(id);
+    }
+
     //获取下拉列表
     public List<Product> getList(){
         return productMapper.getProductList();
