@@ -5,7 +5,7 @@
 <mapper namespace="com.wuhan.mall.dao.ProductMapper">
 
     <select id="getProductList" resultType="com.wuhan.mall.entity.Product">
-        select id,name,avatar,qualityLevel,type,viscosity from product
+        select id,name,avatar,qualityLevel,type,viscosity from product order by createTime;
     </select>
 
     <select id="getProductVoList" resultType="com.wuhan.mall.vo.ProductVo">
