@@ -10,8 +10,6 @@ public interface ClientLogInfoMapper extends BaseMapper<ClientLogInfo> {
 
     int addRecord(ClientLogInfo clientLogInfo);
 
-    List<ClientLogInfo>  getClientLogInfoList(@Param("clientId") Integer clientId,
-                                              @Param("startDate") String startDate,
-                                              @Param("endDate") String endDate);
+    List<ClientLogInfo>  getClientLogInfoList(@Param("clientId") Integer clientId);
 
 }

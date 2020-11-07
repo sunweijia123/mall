@@ -22,13 +22,13 @@ public class ClientLogInfoService {
         return clientLogInfoMapper.addRecord(clientLogInfo);
     }
 
-    public Map<String,Object> getClientLogInfoList(Integer clientId, PageBean pageBean,String startDate,String endDate){
+    public Map<String,Object> getClientLogInfoList(Integer clientId, PageBean pageBean){
         Map<String,Object> result = new HashMap<>();
         if(pageBean!=null && pageBean.isPagination()){
             PageHelper.startPage(pageBean.getPage(),pageBean.getRows());
         }
 
-        List<ClientLogInfo> logInfoList = clientLogInfoMapper.getClientLogInfoList(clientId,startDate,endDate);
+        List<ClientLogInfo> logInfoList = clientLogInfoMapper.getClientLogInfoList(clientId);
         result.put("data",logInfoList);
         if(pageBean!=null && pageBean.isPagination()){
             PageInfo<ClientLogInfo> pageInfo =new PageInfo<>(logInfoList);
