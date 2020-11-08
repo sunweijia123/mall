@@ -20,9 +20,9 @@ public class DealInfoController {
     DealService dealService;
 
     @PostMapping("/addDealInfo")
-    public JsonResult addDealInfo(@RequestBody DealInfo dealInfo){
+    public JsonResult addDealInfo(@RequestBody DealInfo dealInfo) {
 
-        if(!Objects.nonNull(dealInfo)){
+        if (!Objects.nonNull(dealInfo)) {
             return JsonResult.FAILED("参数错误！");
         }
 
@@ -31,9 +31,9 @@ public class DealInfoController {
     }
 
     @PostMapping("/updateDealInfo")
-    public JsonResult updateDealInfo(@RequestBody DealInfo dealInfo){
+    public JsonResult updateDealInfo(@RequestBody DealInfo dealInfo) {
 
-        if(!Objects.nonNull(dealInfo)){
+        if (!Objects.nonNull(dealInfo)) {
             return JsonResult.FAILED("参数错误！");
         }
 
@@ -43,20 +43,20 @@ public class DealInfoController {
 
     @RequestMapping("/getDealInfoList")
     public JsonResult getDealInfoList(@RequestParam("page") Integer page,
-                                    @RequestParam(value = "startDate", required = false) String startDate,
-                                    @RequestParam(value = "endDate", required = false) String endDate){
-        if(page == null){
+                                      @RequestParam(value = "startDate", required = false) String startDate,
+                                      @RequestParam(value = "endDate", required = false) String endDate) {
+        if (page == null) {
             page = 1;
         }
         PageBean pageBean = new PageBean();
         pageBean.setPage(page);
-        Map<String, Object> map = dealService.getDealInfoList(pageBean,startDate,endDate);
-        List<DealInfoVo> data = (List<DealInfoVo>)map.get("data");
-        Integer pageNum = (Integer)map.get("page");
-        Integer pageSize = (Integer)map.get("pageSize");
-        Long total = (Long)map.get("total");
-        Long totalPages = (Long)map.get("totalPages");
-        return JsonResult.OKList(data,pageNum,pageSize,total,totalPages);
+        Map<String, Object> map = dealService.getDealInfoList(pageBean, startDate, endDate);
+        List<DealInfoVo> data = (List<DealInfoVo>) map.get("data");
+        Integer pageNum = (Integer) map.get("page");
+        Integer pageSize = (Integer) map.get("pageSize");
+        Long total = (Long) map.get("total");
+        Long totalPages = (Long) map.get("totalPages");
+        return JsonResult.OKList(data, pageNum, pageSize, total, totalPages);
     }
 
 }

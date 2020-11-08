@@ -6,8 +6,8 @@ import com.wuhan.mall.vo.DealInfoVo;
 
 import java.util.List;
 
-public interface DealMapper  extends BaseMapper<DealInfo> {
+public interface DealMapper extends BaseMapper<DealInfo> {
 
-    List<DealInfoVo> getDealInfoList(String startDate,String endDate);
+    List<DealInfoVo> getDealInfoList(String startDate, String endDate);
 
 }

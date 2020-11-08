@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-public class DealInfo extends BaseEntity{
+public class DealInfo extends BaseEntity {
 
     //客户id
     private int clientId;

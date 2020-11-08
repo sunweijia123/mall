@@ -1,5 +1,6 @@
 package com.wuhan.mall.config;
 
+import com.wuhan.mall.interceptor.DealInfoInterceptor;
 import com.wuhan.mall.interceptor.ProcessInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -15,10 +16,14 @@ public class MallWebMvcConfig implements WebMvcConfigurer {
 
     @Resource
     ProcessInterceptor interceptor;
+    @Resource
+    DealInfoInterceptor dealInfoInterceptor;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(interceptor).addPathPatterns("/**")
                 .excludePathPatterns("/");
+//        registry.addInterceptor(dealInfoInterceptor).addPathPatterns("/**")
+//                .excludePathPatterns("/");
     }
 
     @Override
