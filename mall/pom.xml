@@ -141,6 +141,12 @@
             <artifactId>validation-api</artifactId>
             <version>1.1.0.Final</version>
         </dependency>
+        <!--糊涂工具-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.0.12</version>
+        </dependency>
     </dependencies>
 
     <profiles>
