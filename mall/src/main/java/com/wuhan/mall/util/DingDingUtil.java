@@ -12,7 +12,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,7 @@ import java.util.Map;
 /**
  * @ClassName DingDingUtil
  * @Description: 钉钉机器人消息通知
- * @Author Shuai.Zhang
+ * @Author Sun Weijia
  * @Date 2020/8/5
  * @Version
  **/

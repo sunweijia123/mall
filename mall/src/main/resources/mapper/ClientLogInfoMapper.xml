@@ -17,7 +17,7 @@
     </insert>
 
     <select id="getClientLogInfoList" resultType="com.wuhan.mall.entity.ClientLogInfo">
-        select id,visitTime,visitInfo from client_log_lnfo where clientId = #{clientId}  order by createTime
+        select id,visitTime,visitInfo from client_log_lnfo where clientId = #{clientId}  order by createTime desc
     </select>
 
 </mapper>
