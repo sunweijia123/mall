@@ -21,7 +21,7 @@ public class DealInfo extends BaseEntity {
     //单价
     private int price;
 
-    //售价
+    //售价（箱）
     private int sellPrice;
 
     //数量

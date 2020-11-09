@@ -46,13 +46,13 @@ public class DealService {
     }
 
 
-    public Map<String, Object> getDealInfoList(PageBean pageBean, String startDate, String endDate) {
+    public Map<String, Object> getDealInfoList(PageBean pageBean, String startDate, String endDate,Integer clientId,Integer productId) {
 
         Map<String, Object> result = new HashMap<>();
         if (pageBean != null && pageBean.isPagination()) {
             PageHelper.startPage(pageBean.getPage(), pageBean.getRows());
         }
-        List<DealInfoVo> dealInfoList = dealMapper.getDealInfoList(startDate, endDate);
+        List<DealInfoVo> dealInfoList = dealMapper.getDealInfoList(startDate, endDate,clientId,productId);
         //补充客户名称和产品名称
         for (DealInfoVo dealInfoVo : dealInfoList) {
             Client client = clientMapper.getClient(dealInfoVo.getClientId());
@@ -69,6 +69,11 @@ public class DealService {
             result.put("totalPages", pageInfo.getTotal() / pageInfo.getPageSize() + 1);
         }
         return result;
+    }
+
+    //回显接口
+    public DealInfo getDealInfoById(Integer id){
+        return dealMapper.selectById(id);
     }
 
     //计算价格

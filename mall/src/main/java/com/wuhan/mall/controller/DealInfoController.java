@@ -41,16 +41,18 @@ public class DealInfoController {
         return JsonResult.OK(result);
     }
 
-    @RequestMapping("/getDealInfoList")
-    public JsonResult getDealInfoList(@RequestParam("page") Integer page,
+    @GetMapping("/getDealInfoList")
+    public JsonResult getDealInfoList(@RequestParam(value = "page", required = false) Integer page,
                                       @RequestParam(value = "startDate", required = false) String startDate,
-                                      @RequestParam(value = "endDate", required = false) String endDate) {
+                                      @RequestParam(value = "endDate", required = false) String endDate,
+                                      @RequestParam(value = "clientId", required = false) Integer clientId,
+                                      @RequestParam(value = "productId", required = false) Integer productId) {
         if (page == null) {
             page = 1;
         }
         PageBean pageBean = new PageBean();
         pageBean.setPage(page);
-        Map<String, Object> map = dealService.getDealInfoList(pageBean, startDate, endDate);
+        Map<String, Object> map = dealService.getDealInfoList(pageBean, startDate,endDate,clientId,productId);
         List<DealInfoVo> data = (List<DealInfoVo>) map.get("data");
         Integer pageNum = (Integer) map.get("page");
         Integer pageSize = (Integer) map.get("pageSize");
@@ -59,4 +61,11 @@ public class DealInfoController {
         return JsonResult.OKList(data, pageNum, pageSize, total, totalPages);
     }
 
+    @GetMapping("/getDealInfoById")
+    public JsonResult getDealInfoById(@RequestParam("id") Integer id){
+        if(id == null || id == 0){
+            return JsonResult.FAILED("参数错误！");
+        }
+        return JsonResult.OK(dealService.getDealInfoById(id));
+    }
 }

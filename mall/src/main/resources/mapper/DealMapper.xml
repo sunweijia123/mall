@@ -13,6 +13,12 @@
             <if test="endDate != null and endDate != ''">
                 and <![CDATA[create_time <= #{endDate}]]>
             </if>
+            <if test="clientId != null">
+                and client_id = #{clientId}
+            </if>
+            <if test="productId != null">
+                and product_id = #{productId}
+            </if>
         </where>
         order by create_time desc
     </select>
