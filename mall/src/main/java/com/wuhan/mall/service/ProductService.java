@@ -77,7 +77,7 @@ public class ProductService {
     }
 
     //产品属性信息回显接口
-    public ProductAttribute getProductAttrById(Integer id){
+    public List<ProductAttribute> getProductAttrById(Integer id){
         return productMapper.getProductAttrById(id);
     }
 

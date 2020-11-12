@@ -106,7 +106,7 @@ public class ProductController {
     }
 
     @GetMapping("/getProductAttrById")
-    public JsonResult getProductAttrById(@RequestParam("id")Integer id){
+    public JsonResult getProductAttrById(@RequestParam("productId")Integer id){
         return JsonResult.OK(productService.getProductAttrById(id));
     }
 

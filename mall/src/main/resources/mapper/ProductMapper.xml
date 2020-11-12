@@ -27,7 +27,7 @@
     </select>
 
     <select id="getProductAttrById" resultType="com.wuhan.mall.entity.ProductAttribute">
-        select id,productId,pack,price from product_attribute where id =#{id}
+        select id,productId,pack,price from product_attribute where productId =#{productId}
     </select>
 
     <insert id="addProduct" useGeneratedKeys="true" keyProperty="id" parameterType="com.wuhan.mall.entity.Product">
